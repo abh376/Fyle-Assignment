@@ -1,0 +1,55 @@
+<div class="flex justify-center">
+    <form [formGroup]="userform">
+        <div>
+        <label>Name:</label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="name" formControlName="name" type="text"/>
+        </div>           
+        <br/>
+        <div>
+            <table class="table-auto w-full bg-white border border-gray-300">
+                <thead class="bg-pink-500 text-white">
+                <tr>
+                  <th class="border border-gray-300 px-4 py-2">Course</th>
+                  <th class="border border-gray-300 px-4 py-2">Workout minute</th>
+                </tr>
+                </thead>
+                <tbody formArrayName="itemRows">
+                <tr *ngFor="let itemrow of getItemRow;let i=index" [formGroupName]="i"> 
+                  <td class="border border-gray-300 px-4 py-2">
+                    <label>Name:</label>
+                  <select formControlName="course" [value]="">
+                    <option value="">Select</option>
+                    <option value="Cycling">Cycling</option>
+                    <option value="Running">Running</option>
+                    <option value="yoga">yoga</option>
+                    <option value="swimming">swimming</option>
+                    </select>
+                </td>
+                  <td class="border border-gray-300 px-4 py-2">
+                    <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="name" formControlName="name" type="text" formControlName="noOfWorkMin" />
+                  </td>
+                  <td>
+                    <button *ngIf="getItemRow.length>1" id="DRw"
+                      (click)="deleteRow(i)" class="btn btn-danger">
+                      <i>delete</i>
+                    </button>
+                  </td>
+                  </tr>
+                  </tbody>
+            </table>
+            <br/>
+            <div>
+                <button class="bg-blue-500 text-white py-2 px-4 rounded-md" type="button" id="ANR" (click)="addNewRow()">Add new Row</button>
+                </div>
+        </div>
+        <br/>
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+            <button class="bg-green-500 text-white py-2 px-4 rounded-md" id="AddItem" type="button" (click)="addItem()">Add</button>
+            <div class="flex items-center space-x-2 lg:order-2">
+            <button class="bg-red-500 text-white py-2 px-4 rounded-md" id="Reset"type="button" (click)="reset()">Reset</button>
+                <button class="bg-yellow-500 text-white py-2 px-4 rounded-md" id="goBack" type="button" (click)="goBack()">goBack</button>
+            </div>
+          </div> 
+    </form>
+</div>
+

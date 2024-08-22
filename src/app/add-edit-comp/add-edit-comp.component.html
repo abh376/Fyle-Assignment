@@ -1,0 +1,67 @@
+<header>
+    <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-pink-400">
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+            <div class="flex items-start">
+                <img src="https://th.bing.com/th/id/OIP.OoB0d6WfZFqRkEUXtk0tiQHaFj?w=218&h=180&c=7&r=0&o=5&pid=1.7" class="mr-3 h-6 sm:h-9" alt="Fitness app Logo" />
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Fitness App</span>
+            </div>
+                <div class="flex items-center space-x-2 lg:order-2">
+            <button routerLink="create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add details</button>
+            <button routerLink="show" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Show Chart</button>
+        </div>
+        </div>
+    </nav>
+</header>
+<div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+    <div>
+    <label>Select course</label>
+    <br/>
+    <select name="country" [(ngModel)]="ite" id="dropdown" class="bg-gray-50 border border-gray-300"n [value]="">
+        <option [value]="" [ngValue]="0" selected>Select a course</option>
+      <option id="tr" *ngFor="let c of course" [ngValue]="c">{{c}}</option>
+    </select>
+    </div>
+    <div>
+    <label>Search Name</label>
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" [(ngModel)]="name" placeholder="Search">
+     </div>  
+</div>
+<div class="flex justify-center">
+    <table class="table-auto w-full bg-white border border-gray-300">
+      <thead class="bg-pink-500 text-white">
+      <tr>
+        <th class="border border-gray-300 px-4 py-2">id</th>
+        <th class="border border-gray-300 px-4 py-2">Name</th>
+        <th class="border border-gray-300 px-4 py-2">workoutmins</th>
+        <th class="border border-gray-300 px-4 py-2">courslist</th>
+        <th class="border border-gray-300 px-4 py-2">NOofWorkouts</th>
+        <th class="border border-gray-300 px-4 py-2">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr id="traverse" *ngFor="let item of users|searchCourse: ite|searchName :name|paginate: { itemsPerPage: 2, currentPage: p}">
+          <td class="border border-gray-300 px-4 py-2">{{item.id}}</td>
+            <td class="border border-gray-300 px-4 py-2">{{item.name}}</td>
+
+            <td class="border border-gray-300 px-4 py-2">
+              <div>
+                 {{Add(item.arr)}}
+              </div>
+            </td>
+            <td class="border border-gray-300 px-4 py-2">
+              <div>
+                 {{Concat(item.arr)}}
+              </div>
+            </td>
+            <td class="border border-gray-300 px-4 py-2">
+              {{item.arr.length}}
+            </td>
+            <td class="border border-gray-300 px-4 py-2"><button type="button" class="bg-blue-500 text-white py-2 px-4 rounded-md" type="button" id="deletei" (click)="deleteNote(item.id)">Remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+    </div> 
+

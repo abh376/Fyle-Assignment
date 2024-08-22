@@ -1,0 +1,40 @@
+<div class="flex justify-start">
+<aside class="w-full p-6 sm:w-60 dark:bg-gray-50 dark:text-gray-800">
+	<nav class="space-y-8 text-sm">
+		<div class="space-y-2">
+			<h2 class="text-sm font-semibold tracking-widest uppercase dark:text-gray-600">USER LIST</h2>
+			<div class="flex flex-col space-y-1">
+				<div *ngFor="let item of users">
+                    <button class=" text-Black py-2 px-4" id="push" type="button" (click)="pushit(item)">{{item.name}}</button>
+                  </div>
+			</div>
+		</div>
+    </nav>
+</aside>
+
+  <div *ngFor="let i of products">
+    <div>
+      {{i.name}}
+    </div>
+    <div>
+      {{i.value}}
+    </div>
+  </div>
+  <div class="flex justify-center">
+  @if(products.length>0){
+  <ngx-charts-bar-vertical
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="products"
+  [gradient]="gradient"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  (select)="onSelect($event)">
+</ngx-charts-bar-vertical>}
+  </div>
+</div>
